@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>web workers example .</title>
+</head>
+<body>
+  
+
+  <script>
+    var worker = new Worker('first.js')
+    worker.addEventListener('message' , function(e){
+      document.body.innerHTML = e.data
+    } , false)
+    worker.postMessage({p1: 5 , p2: 10})
+  </script>
+</body>
+</html>
