@@ -68,9 +68,50 @@
 
 ### Handling errors from a worker . 
 
+    var worker = new Worker('test.js')
+    // ...code....
+    worker.addEventListener('message' , function(e){/* 
+        do something with the data 
+    */} , false)
+    
+    worker.addEventListener('error' , function(err){
+      // err.filename , err.lineno , err.message
+      console.log(JSON.stringify(err))  
+    } , false)
+    
+- if an unhandled exception on a background thread the worker fire 
+  an error event on the owning thread . 
+
+
+### import scripts into a worker . 
+
+    importScripts('script1.js' , 'scirpt2.js' /*could pass more as much as you want here*/)
+
+### terminating a worker . 
+
+    var worker = new Worker('x.js')
+    // ..... did a lot of work and tired . time to terminate it 
+    worker.terminate() 
+
+  > workers also can call terminate on them selves . 
+
+    // ---------------------------------------------------
+
+> what we looked at was dedicated workers meaning they are dedicated to the 
+  thread that has created them , thread < ---- messages ----- > worker 
 
 
 
+# Shared workers .. 
+
+- workers can be shared by owners . 
+  - connect by a `script` uri or a `script` name 
+- support per owner message ports . 
+  - connect event fire when new owner connects . 
+- can recieve messages from multiple owners and post messages to multiple owners . 
+
+
+`TODO , EDGE HAS NOT BEGUN DEVELOPMENT AND WEBKIT DROPPED IT ALL TOGETHER` 
 
 
 

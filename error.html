@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error handling web workers </title>
+</head>
+<body>
+  
+
+  <script>
+    var worker = new Worker('error.js')
+    worker.addEventListener('error' , function(e){
+      document.body.innerHTML = `
+        ERROR IN ${e.filename} line  ${e.lineno} message: ${e.message}
+      `
+    } , false)
+  </script>
+</body>
+</html>
